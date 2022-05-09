@@ -6,7 +6,7 @@ const getCountries = async () => {
         const p = document.createElement('p');
         const img = document.createElement('img')
         if (country.capital) {
-            p.textContent = `${country.name.common} - ${country.capital[0]} - ${country.population} - ${country.translations.fra.official}`;
+            p.textContent = `${country.name.common} - ${country.capital[0]} - ${country.population} habitants - ${country.translations.fra.official}`;
             img.src = `${country.flags.png}`
         } else {
             p.textContent = `${country.name.common} - Pas de capitale`;

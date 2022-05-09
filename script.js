@@ -1,20 +1,36 @@
-const getCountries = async () => {
-    const url = await fetch("https://restcountries.com/v3.1/all")
-    const res = await url.json();
-    console.log(res);
-    res.forEach((country) => {
+let result = document.querySelector("#result")
+
+document.querySelector('#searchCountry').onsubmit = function (e) {
+    document.querySelector("#result").innerHTML = ""
+    e.preventDefault();
+    actionForm(document.querySelector('#country').value);
+}
+
+const actionForm = async (name) => {
+    let url = `https://restcountries.com/v3.1/name/${name}`
+    let response = await fetch(url);
+    let data = await response.json();
+    console.log(data);
+    let lstLng = [];
+    for (lang in country.languages) {
+        lstLng.push(country.languages[lang]);
+    }
+
+    data.forEach((country) => {
+        const img = document.createElement('img');
         const p = document.createElement('p');
-        const img = document.createElement('img')
         if (country.capital) {
-            p.textContent = `${country.name.common} - ${country.capital[0]} - ${country.population} habitants - ${country.translations.fra.official}`;
-            img.src = `${country.flags.png}`
-        } else {
-            p.textContent = `${country.name.common} - Pas de capitale`;
+            img.src = `${country.flags.png}`;
+            p.innerHTML = `${country.name.common} - ${country.capital[0]}  <br/>  habitant: ${country.population} <br/> Nom en francais: ${country.translations.fra.official}
+  <br/> Superficie: ${country.area} km²`;
         }
-        document.querySelector('body').appendChild(p);
-        document.querySelector('body').appendChild(img);
+        else {
+            p.textContent = `${country.name.common} - Pas de capitale`
+        }
+        result.appendChild(p);
+        result.appendChild(img)
         console.log(country);
     });
 }
 
-getCountries()
+actionForm()

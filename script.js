@@ -50,5 +50,11 @@ const actionForm = async (name) => {
         result.appendChild(p4);
         result.appendChild(p3);
         console.log(country);
+        openStreetMapsLink = document.createElement("a");
+        openStreetMapsLink.href = country.maps.openStreetMaps;
+        openStreetMapsLink.target = "_blank";
+        openStreetMapsLink.classList.add("btn", "btn-info", "mt-1");
+        openStreetMapsLink.textContent = "Voir sur la carte du monde";
+        result.appendChild(openStreetMapsLink);
     });
 }

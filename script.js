@@ -41,13 +41,12 @@ const actionForm = async (name) => {
                 ${cur["name"]} <br/> Symbole : ${cur["symbol"]}`;
             }
             else {
-                p.textContent = `${country.name.common} - Pas de capitale`
+                p2.innerHTML = `${country.name.common} - Pas de capitale`
             }
         });
         result.appendChild(p);
         result.appendChild(img);
         result.appendChild(p2);
-        result.appendChild(p4);
         result.appendChild(p3);
         console.log(country);
         openStreetMapsLink = document.createElement("a");
@@ -56,5 +55,6 @@ const actionForm = async (name) => {
         openStreetMapsLink.classList.add("btn", "btn-info", "mt-1");
         openStreetMapsLink.textContent = "Voir sur la carte du monde";
         result.appendChild(openStreetMapsLink);
+        result.appendChild(p4);
     });
 }
